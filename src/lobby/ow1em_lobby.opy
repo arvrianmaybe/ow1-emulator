@@ -9,8 +9,7 @@
 #!define SOURCE_CODE_LINK "github.com/Overwatch-1-Emulator/ow1-emulator"
 macro GAMDMODE_DESCRIPTION = (GAMEMODE_NAME" "GAMEMODE_VERSION"\n"\
                                "\n"\
-                               "ecksdee#11729's attempt to accurately recreate ""\n"\
-                               "the last version of Overwatch 1 using workshop.""\n"\
+                               "Based of Experimental 02/18/22 Patch""\n"\
                                "\n"\
                                "Stable build: "GAMEMODE_CODE"\n"\
                                "Latest build: "STAGING_CODE"\n"\
