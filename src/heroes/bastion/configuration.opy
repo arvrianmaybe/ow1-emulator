@@ -8,5 +8,5 @@ enum Configuration:
 playervar current_configuration
 
 #!include "recon.opy"
-# !include "sentry.opy"
+#!include "sentry.opy"
 #!include "tank.opy"
