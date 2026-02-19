@@ -13,6 +13,9 @@ def initPharah():
     eventPlayer.setProjectileSpeed(percent(OW1_PHARAH_ROCKET_SPEED/OW2_PHARAH_ROCKET_SPEED))
     # removeSelfHealing()
 
+    eventPlayer.concussive_cooldown = OW1_GENJI_SWIFT_STRIKE_COOLDOWN
+    eventPlayer.concussive_charges = OW1_GENJI_MAX_SWIFT_STRIKE
+
     initHoverJets()
 
 

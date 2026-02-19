@@ -12,3 +12,14 @@ def initMoira():
     setUltCost(OW1_MOIRA_ULT_COST)
     
     # removePassiveHealing()
+
+
+rule "[moira/init.opy]: Decrease Movement speed on victims on melee":
+    @Event playerDealtDamage
+    @Hero moira
+    @Condition eventAbility == Button.MELEE
+
+    victim.setMoveSpeed(70)
+    wait(OW1_MOIRA_MELEE_MOVEMENT_REDUCTION_DURATION)
+    victim.setMoveSpeed(100)
+    wait(OW1_MOIRA_MELEE_MOVEMENT_REDUCTION_COOLDOWN) # Idk if this works but we ball

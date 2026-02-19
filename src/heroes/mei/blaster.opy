@@ -52,6 +52,13 @@ def clearFreezeEffect():
     eventPlayer.setMoveSpeed(100)
     eventPlayer.freeze_progress = 0
 
+rule "[mei/blaster.opy]: More damage on melee if Victim Frozen":
+    @Event playerDealtDamage
+    @Condition victim.hasStatus(Status.FROZEN)
+    @Condition eventAbility == Button.MELEE
+
+    damage(victim, attacker, OW1_MELEE_DAMAGE)
+
 
 rule "[mei/blaster.opy]: OW1 blaster damage":
     @Event playerDealtDamage

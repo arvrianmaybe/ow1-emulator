@@ -1,6 +1,7 @@
 #!mainFile "../../dev_main.opy"
 
 #!include "overload.opy"
+#!include "rivet.opy"
 
 
 def initTorbjorn():
@@ -9,6 +10,8 @@ def initTorbjorn():
     setCustomHp(OW1_TORBJORN_HEALTH, OW1_TORBJORN_ARMOR, 0)
     setUltCost(OW1_TORBJORN_ULT_COST)
     # removeSelfHealing()
+
+    eventPlayer.rivet_gun_damage = 0
 
     setBaseDamage(eventPlayer, OW1_TORBJORN_TURRET_DAMAGE/OW2_TORBJORN_TURRET_DAMAGE)
 

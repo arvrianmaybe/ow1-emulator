@@ -2,6 +2,7 @@
 
 # !include "sleep.opy"
 #!include "nade.opy"
+#!include "nano.opy"
 
 def initAna():
     @Name "[ana/init.opy]: initAna()"
@@ -31,3 +32,13 @@ rule "[ana/init.opy]: Compensate Ana global heal reduction":
     @Condition eventAbility in [Button.ULTIMATE]
 
     heal(healee, healer, eventHealing/eventPlayer._base_healing_scalar-eventHealing)
+
+
+rule "[ana/init.opy]: OW1 Ana reload speed":
+    @Event eachPlayer
+    @Hero ana
+    @Condition eventPlayer.isReloading()
+
+    wait(OW1_ANA_RELOAD_TIME, Wait.ABORT_WHEN_FALSE)
+    eventPlayer.setAmmo(0, OW1_ANA_CLIP_SIZE)
+    eventPlayer.cancelPrimaryAction()

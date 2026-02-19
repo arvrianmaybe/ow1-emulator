@@ -12,3 +12,13 @@ rule "[reinhardt/firestrike.opy]: Force single firestrike":
     wait(OW1_REINHARDT_FIRESTRIKE_COOLDOWN_TIME)
     eventPlayer.setAbilityCharge(Button.ABILITY_2, 2) 
     eventPlayer.allowButton(Button.ABILITY_2)
+
+
+rule "[reinhardt/leap.opy]: Decrease Firstrike victim healing":
+    @Event playerDealtDamage
+    @Hero reinhardt
+    @Condition eventAbility == [Button.ABILITY_2]
+
+    victim.setHealingReceived(50)
+    wait(OW1_REINHARDT_FIRESTRIKE_HEALING_REDUCTION_DURATION)
+    victim.setHealingReceived(100)

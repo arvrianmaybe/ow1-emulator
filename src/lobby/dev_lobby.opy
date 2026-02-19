@@ -2,8 +2,8 @@
 
 #!define GAMEMODE_VERSION "Dev Build"
 #!define GAMEMODE_NAME "Overwatch 1 Emulator"
-#!define GAMEMODE_CODE "FDZW2"
-#!define STAGING_CODE "ESMXJ"
+#!define GAMEMODE_CODE "WYA4G"
+#!define STAGING_CODE "WYA4G"
 #!define DISCORD_SHORT_LINK "dsc.gg/ow1"
 #!define DISCORD_LONG_LINK "discord.gg/GMVqwYXbWB"
 #!define SOURCE_CODE_LINK "github.com/Overwatch-1-Emulator/ow1-emulator"
@@ -71,11 +71,13 @@ settings {
     "heroes": {
         "allTeams": {
             "ana": {
+                "ammoClipSize%": percent(OW1_ANA_CLIP_SIZE/OW2_ANA_CLIP_SIZE),
                 "ability1Cooldown%": percent(OW1_ANA_SLEEP_DART_COOLDOWN_TIME/OW2_ANA_SLEEP_DART_COOLDOWN_TIME),
                 "ability2Cooldown%": percent(OW1_ANA_BIOTIC_GRENADE_COOLDOWN/OW2_ANA_BIOTIC_GRENADE_COOLDOWN),
                 "ultGen%": percent(OW2_ANA_ULT_COST/OW1_ANA_ULT_COST)
             },
             "ashe": {
+                "ability1Cooldown%": percent(OW1_ASHE_COACH_GUN_COOLDOWN/OW2_ASHE_COACH_GUN_COOLDOWN),
                 "ultGen%": percent(OW2_ASHE_ULT_COST/OW1_ASHE_ULT_COST)
             },
             "anran": {
@@ -128,6 +130,7 @@ settings {
                 "ultGen%": percent(OW2_FREJA_ULT_COST/OW1_FREJA_ULT_COST)
             },
             "genji": {
+                "ultDuration%": (100/2), 
                 "ultGen%": percent(OW2_GENJI_ULT_COST/OW1_GENJI_ULT_COST)
             },
             "hanzo": {
@@ -179,6 +182,7 @@ settings {
                 "ultGen%": percent(OW2_MIZUKI_ULT_COST/OW1_MIZUKI_ULT_COST)
             },
             "mercy": {
+                "ability2Cooldown%": percent(OW1_MERCY_VALKYRIE_COOLDOWN/OW2_MERCY_RESURRECTION_COOLDOWN),
                 "ultGen%": percent(OW2_MERCY_ULT_COST/OW1_MERCY_ULT_COST),
                 "enablePassive": false
             },
@@ -205,6 +209,8 @@ settings {
                 "ultGen%": percent(OW2_RAMATTRA_ULT_COST/OW1_RAMATTRA_ULT_COST)
             },
             "reaper": {
+                "ability1Cooldown%": percent(OW1_REAPER_WRAITH_COOLDOWN/OW2_REAPER_WRAITH_COOLDOWN),
+                "ability2Cooldown%": percent(OW1_REAPER_SHADOW_STEP_COOLDOWN/OW2_REAPER_SHADOW_STEP_COOLDOWN),
                 "ultGen%": percent(OW2_REAPER_ULT_COST/OW1_REAPER_ULT_COST)
             },
             "reinhardt": {
@@ -229,6 +235,7 @@ settings {
                 "ultGen%": percent(OW2_SOJOURN_ULT_COST/OW1_SOJOURN_ULT_COST)
             },
             "soldier": {
+                "secondaryFireCooldown%": percent(OW1_SOLDIER_HELIX_ROCKET_COOLDOWN/OW2_SOLDIER_HELIX_ROCKET_COOLDOWN),
                 "ability2Cooldown%": percent(OW1_SOLDIER_BIOTIC_FIELD_COOLDOWN/OW2_SOLDIER_BIOTIC_FIELD_COOLDOWN),
                 "ultGen%": percent(OW2_SOLDIER_ULT_COST/OW1_SOLDIER_ULT_COST)
             },
@@ -237,6 +244,8 @@ settings {
                 "ultGen%": percent(OW2_SOMBRA_ULT_COST/OW1_SOMBRA_ULT_COST)
             },
             "symmetra": {
+                "ability1Cooldown%": percent(OW1_SYMMETRA_SENTRY_TURRET_COOLDOWN/OW2_SYMMETRA_SENTRY_TURRET_COOLDOWN),
+                "ability2Cooldown%": percent(OW1_SYMMETRA_TELEPORTER_COOLDOWN/OW2_SYMMETRA_TELEPORTER_COOLDOWN),
                 "ultGen%": percent(OW2_SYMMETRA_ULT_COST/OW1_SYMMETRA_ULT_COST)
             },
             "torbjorn": {
@@ -250,6 +259,8 @@ settings {
                 "ultGen%": percent(OW2_VENTURE_ULT_COST/OW1_VENTURE_ULT_COST),
             },
             "widowmaker": {
+                "ability1Cooldown%": percent(OW1_WIDOWMAKER_GRAPPLING_HOOK_COOLDOWN/OW2_WIDOWMAKER_GRAPPLING_HOOK_COOLDOWN),
+                "ability2Cooldown%": percent(OW1_WIDOWMAKER_VENOM_MINE_COOLDOWN/OW2_WIDOWMAKER_VENOM_MINE_COOLDOWN),
                 "ultGen%": percent(OW2_WIDOWMAKER_ULT_COST/OW1_WIDOWMAKER_ULT_COST)
             },
             "winston": {

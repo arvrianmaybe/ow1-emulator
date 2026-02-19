@@ -14,6 +14,6 @@ rule "[orisa/fortify.opy]: Correct movement speed during fortify":
     @Hero orisa
     @Condition eventPlayer.isUsingAbility1()
 
-    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/(1-OW2_ORISA_FORTIFY_MOVEMENT_PENALTY))
+    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/(1-OW2_ORISA_FORTIFY_MOVEMENT_PENALTY)*(1+OW1_ORISA_FORTIFY_MOVEMENT_SPEED))
     waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
-    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-OW2_ORISA_FORTIFY_MOVEMENT_PENALTY))
+    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-OW2_ORISA_FORTIFY_MOVEMENT_PENALTY)/(1+OW1_ORISA_FORTIFY_MOVEMENT_SPEED))

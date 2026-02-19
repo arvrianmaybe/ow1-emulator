@@ -21,6 +21,8 @@ def initWidowmaker():
     setUltCost(OW1_WIDOWMAKER_ULT_COST)
     # removeSelfHealing()
 
+    eventPlayer.setProjectileSpeed(percent(OW1_WIDOWMAKER_VENOM_MINE_PROJECTILE_SPEED/OW2_WIDOWMAKER_VENOM_MINE_PROJECTILE_SPEED))
+
 
 rule "[widowmaker.opy]: Revert sniper damage falloff":
     @Event playerDealtDamage

@@ -1,7 +1,7 @@
 #!mainFile "../../dev_main.opy"
 
 # !include "soundwave.opy"
-# !include "aura.opy"
+#!include "aura.opy"
 
 
 def initLucio():
@@ -30,3 +30,21 @@ rule "[lucio/init.opy]: OW1 Lucio gun damage":
 #     @Condition eventAbility in []
 
 #     damage(victim, attacker, (eventDamage/eventPlayer._base_damage_scalar - eventDamage)/eventPlayer._base_damage_scalar)
+
+
+rule "[lucio/init.opy]: Reduce Soundbarrier overhealth":
+    @Event eachPlayer
+    @Hero lucio
+    @Condition eventPlayer.isUsingUltimate()
+
+    wait()
+    waitUntil(eventPlayer.isOnGround(), Math.INFINITY)
+        getPlayersInRadius(eventPlayer.getPosition(), 
+            OW1_LUCIO_SOUND_BARRIER_AREA_OF_EFFECT, 
+            getOppositeTeam(eventPlayer.getTeam()), 
+            LosCheck.SURFACES).applyImpulse(Vector.UP, 5.25, Relativity.TO_PLAYER, Impulse.CANCEL_CONTRARY_MOTION_XYZ)
+
+        getPlayersInRadius(eventPlayer.getPosition(), 
+            OW1_LUCIO_SOUND_BARRIER_AREA_OF_EFFECT, 
+            getOppositeTeam(eventPlayer.getTeam()), 
+            LosCheck.SURFACES).applyImpulse(getForwardDirection(eventPlayer), 6, Relativity.TO_WORLD, Impulse.CANCEL_CONTRARY_MOTION_XYZ)

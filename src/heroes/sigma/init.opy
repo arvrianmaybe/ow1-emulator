@@ -1,10 +1,11 @@
 #!mainFile "../../dev_main.opy"
 
+#!include "accretion.opy"
 
 def initSigma():
     @Name "[sigma/init.opy]: initSigma()"
 
-    # setCustomHp(OW1_SIGMA_HEALTH, 0, OW1_SIGMA_SHIELDS)
+    # setCustomHp(OW1_SIGMA_HEALTH, OW1_SIGMA_ARMOR , 0)
     setUltCost(OW1_SIGMA_ULT_COST)
     # removeTankPassive()
     # removeSelfHealing()
@@ -27,3 +28,11 @@ rule "[sigma/init.opy]: Compensate Sigma global damage reduction":
     @Condition eventAbility in [Button.PRIMARY_FIRE]
 
     damage(victim, attacker, (eventDamage/eventPlayer._base_damage_scalar - eventDamage)/eventPlayer._base_damage_scalar)
+
+
+rule "[sigma/init.opy]: Set Experimental Barrier cooldown":
+    @Event eachPlayer
+    @Hero sigma
+    @Condition eventPlayer.getAbilityCooldown(Button.SECONDARY_FIRE) > 0
+    
+    eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, OW1_SIGMA_BARRIER_COOLDOWN)

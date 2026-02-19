@@ -1,6 +1,5 @@
 #!mainFile "../../dev_main.opy"
 
-
 rule "[soldier/pulse_rifle.opy]: Deal OW1 soldier primary fire damage":
     @Event playerDealtDamage
     @Hero soldier

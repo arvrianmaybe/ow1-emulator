@@ -15,6 +15,7 @@ macro isPressingSelfRepairButton(player):
 
 macro isUsingSelfRepair(player):
     ((isPressingSelfRepairButton(player))
+ and (not player.isFiringSecondaryFire())
  and (not player.isMeleeing())
  and (not isCCd(player))
  and (player.isAlive())

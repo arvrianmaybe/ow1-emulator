@@ -37,10 +37,12 @@ rule "[utilities/hero_roster.opy]: Custom role definition":
 
     # Damage
     _damage_heroes = getDamageHeroes()
+    _damage_heroes.remove(Hero.SYMMETRA)
     _damage_heroes.append(Hero.DOOMFIST)
 
     # Supports
     _support_heroes = getSupportHeroes()
+    _support_heroes.append(Hero.SYMMETRA)
 
     _available_tanks = [h for h in _available_heroes if h in _tank_heroes]
     _available_dps = [h for h in _available_heroes if h in _damage_heroes]

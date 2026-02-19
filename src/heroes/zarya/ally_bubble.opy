@@ -3,6 +3,8 @@
 # playervar ally_bubble_cooldown
 # playervar ally_bubble_cd_text
 
+playervar ally_bubble_speed
+
 # macro initAllyBubble():
 #     eventPlayer.ally_bubble_cooldown = 0
 
@@ -70,7 +72,7 @@ Below HUD is tuned for 16:9 aspect ratio monitors (typical PC Overwatch setup).
 #     eventPlayer.setAbility2Enabled(true)
 #     hideAllyBubbleCD()
 
-rule "[zarya/barrier.opy]: OW1 Zarya ally barrier health":
+rule "[zarya/self_bubble.opy]: OW1 Zarya ally barrier health":
     @Event eachPlayer
     @Hero zarya
     @Condition eventPlayer.isHoldingButton(Button.ABILITY_2)
@@ -82,3 +84,27 @@ rule "[zarya/barrier.opy]: OW1 Zarya ally barrier health":
     eventPlayer.disallowButton(Button.ABILITY_2)
     waitUntil(eventPlayer.isUsingAbility2(), TICK_DURATION)
     eventPlayer.setMaxHealth(percent(eventPlayer._hp_scalar))
+
+rule "[zarya/ally_bubble.opy]: OW1 zarya ally bubble cooldown":
+    @Event eachPlayer
+    @Hero zarya
+    @Condition eventPlayer.isUsingAbility2()
+
+    eventPlayer.getPlayerClosestToReticle(eventPlayer.getTeam()).ally_bubble_speed = true
+    waitUntil(not eventPlayer.isUsingAbility2(), Math.INFINITY)
+    eventPlayer.ally_bubble_speed = false
+
+rule "[zarya/ally_bubble.opy]: Increase Ally Bubble movement speed":
+    @Event eachPlayer
+    @Condition eventPlayer.ally_bubble_speed
+
+    eventPlayer.setMoveSpeed(150)
+    wait(OW1_ZARYA_PROJECTED_BARRIER_DURATION)
+    eventPlayer.setMoveSpeed(100)
+    eventPlayer.ally_bubble_speed = false
+
+rule "[zarya/ally_bubble.opy]: Remove Ally Bubble speed":
+    @Event eachPlayer
+    @Condition not eventPlayer.ally_bubble_speed
+
+    eventPlayer.setMoveSpeed(100)

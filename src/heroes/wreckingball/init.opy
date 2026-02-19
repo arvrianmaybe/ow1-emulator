@@ -2,6 +2,7 @@
 
 #!include "grapple.opy"
 #!include "adaptive_shield.opy"
+#!include "minefield.opy"
 
 
 def initHammond():
@@ -21,3 +22,11 @@ rule "[wreckingball/init.opy]: Correct primary fire, fireball, piledriver damage
     @Condition eventAbility in [Button.PRIMARY_FIRE, Button.ABILITY_1, Button.CROUCH]
 
     damage(victim, attacker, (eventDamage/eventPlayer._base_damage_scalar - eventDamage)/eventPlayer._base_damage_scalar)
+
+
+rule "[wreckingball/init.opy]: Piledriver reduce CD of Adaptive Shield":
+    @Event playerDealtDamage
+    @Hero hammond
+    @Condition eventAbility == Button.CROUCH
+
+    eventPlayer.setAbilityCooldown(Button.ABILITY_2, eventPlayer.getAbilityCooldown(Button.ABILITY_2) - 1)

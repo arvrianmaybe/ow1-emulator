@@ -71,7 +71,7 @@ Below HUD is tuned for 16:9 aspect ratio monitors (typical PC Overwatch setup).
 #     hideSelfBubbleCD()
 
 
-rule "[zarya/barrier.opy]: OW1 Zarya self barrier health":
+rule "[zarya/self_bubble.opy]: OW1 Zarya self barrier health":
     @Event eachPlayer
     @Hero zarya
     @Condition eventPlayer.isHoldingButton(Button.ABILITY_1)
@@ -83,3 +83,12 @@ rule "[zarya/barrier.opy]: OW1 Zarya self barrier health":
     eventPlayer.disallowButton(Button.ABILITY_1)
     waitUntil(eventPlayer.isUsingAbility1(), TICK_DURATION)
     eventPlayer.setMaxHealth(percent(eventPlayer._hp_scalar))
+
+rule "[zarya/self_bubble.opy]: Increase Self Bubble movement speed":
+    @Event eachPlayer
+    @Hero zarya
+    @Condition eventPlayer.isUsingAbility1()
+
+    eventPlayer.setMoveSpeed(150)
+    wait(OW1_ZARYA_PROJECTED_BARRIER_DURATION)
+    eventPlayer.setMoveSpeed(100)

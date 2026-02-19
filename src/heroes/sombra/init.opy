@@ -15,6 +15,8 @@ def initSombra():
     getPlayers(eventPlayer.getTeam()).friendly_sombra_player = eventPlayer
     getPlayers(getOppositeTeam(eventPlayer.getTeam())).enemy_sombra_player = eventPlayer
     
+    setBaseDamage(eventPlayer, OW1_SOMBRA_MACHINE_PISTOL_DAMAGE/OW2_SOMBRA_MACHINE_PISTOL_DAMAGE) # Compensate for now increase fire rate
+
     eventPlayer.disallowButton(Button.ABILITY_1)
     eventPlayer.disallowButton(Button.ABILITY_2)
 

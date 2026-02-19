@@ -11,4 +11,6 @@ def initMccree():
     setCustomHp(OW1_MCCREE_HEALTH, 0, 0)
     setUltCost(OW1_MCCREE_ULT_COST)
 
+    eventPlayer.setSecondaryFireEnabled(false)
+
     # removeSelfHealing()

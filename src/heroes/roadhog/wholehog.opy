@@ -43,6 +43,16 @@ rule "[roadhog/wholehog.opy]: OW1 Wholehog force autofire":
 
     eventPlayer.startForcingButton(Button.PRIMARY_FIRE)
 
+rule "[roadhog/wholehog.opy]: Cancel ult when pressing right click":
+    @Event eachPlayer
+    @Hero roadhog
+    @Condition eventPlayer.isUsingUltimate()
+    @Condition eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
+
+    if eventPlayer.isUsingUltimate():
+        eventPlayer._scrap_ammo = eventPlayer.getAmmo(0)
+        cancelWholehog()    
+
 
 rule "[roadhog/wholehog.opy]: Cancel ult when stunned":
     @Event eachPlayer

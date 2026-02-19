@@ -10,9 +10,10 @@ rule "[winston/leap.opy]: Override leap cooldown during primal":
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, OW1_WINSTON_PRIMAL_JUMP_PACK_COOLDOWN_TIME)
 
 
-rule "[winston/leap.opy]: OW1 Winston jump pack damage":
+rule "[winston/leap.opy]: OW1 Winston jump pack damage + knockback":
     @Event playerDealtDamage
     @Hero winston
     @Condition eventAbility in [Button.ABILITY_1]
 
     damage(victim, attacker, (eventDamage/eventPlayer._base_damage_scalar*(OW1_WINSTON_JUMP_PACK_DAMAGE/OW2_WINSTON_JUMP_PACK_DAMAGE) - eventDamage)/eventPlayer._base_damage_scalar)
+    victim.applyImpulse(Vector.UP, 5.25, Relativity.TO_WORLD, Impulse.CANCEL_CONTRARY_MOTION_XYZ) # Boop leap victims up

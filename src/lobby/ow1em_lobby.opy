@@ -1,9 +1,9 @@
 #!mainFile "../ow1em_main.opy"
 
-#!define GAMEMODE_VERSION "5.1.1"
+#!define GAMEMODE_VERSION "Experimental (02/18/22)"
 #!define GAMEMODE_NAME "Overwatch 1 Emulator"
-#!define GAMEMODE_CODE "FDZW2"
-#!define STAGING_CODE "ESMXJ"
+#!define GAMEMODE_CODE "WYA4G"
+#!define STAGING_CODE "WYA4G"
 #!define DISCORD_SHORT_LINK "dsc.gg/ow1"
 #!define DISCORD_LONG_LINK "discord.gg/GMVqwYXbWB"
 #!define SOURCE_CODE_LINK "github.com/Overwatch-1-Emulator/ow1-emulator"

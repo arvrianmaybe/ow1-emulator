@@ -1,6 +1,16 @@
 #!mainFile "../../dev_main.opy"
 
 
+rule "[mccree/roll.opy]: Cant Roll while in Air":
+    @Event eachPlayer
+    @Hero cassidy
+    @Condition eventPlayer.isInAir()
+
+    eventPlayer.disallowButton(Button.ABILITY_1)
+    waitUntil(not eventPlayer.isInAir(), Math.INFINITY)
+    eventPlayer.allowButton(Button.ABILITY_1)
+
+
 rule "[mccree/roll.opy]: Remove damage reduction during roll":
     @Event eachPlayer
     @Hero cassidy

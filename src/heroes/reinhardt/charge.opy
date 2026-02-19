@@ -20,3 +20,13 @@ rule "[reinhardt/charge.opy]: Reduce charge radius":
     eventPlayer.startForcingThrottle(0, 1/OW2_REINHARDT_TURN_BONUS, 0, 1/OW2_REINHARDT_TURN_BONUS, 0, 1/OW2_REINHARDT_TURN_BONUS)
     waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
     eventPlayer.stopForcingThrottle()
+
+
+rule "[reinhardt/charge.opy]: 20% Movement increase in Charge":
+    @Event eachPlayer
+    @Hero reinhardt
+    @Condition eventPlayer.isUsingAbility1()
+
+    eventPlayer.setMoveSpeed(120)
+    waitUntil(not eventPlayer.isUsingAbility1(), OW1_REINHARDT_CHARGE_SPEED_INCREASE_DURATION)
+    eventPlayer.setMoveSpeed(100)

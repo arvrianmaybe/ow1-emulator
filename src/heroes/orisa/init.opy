@@ -20,6 +20,7 @@ def initOrisa():
     eventPlayer.is_using_supercharger = false
 
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
+    eventPlayer.setSecondaryFireEnabled(false)
     eventPlayer.is_using_halt = false
 
     resetFusionDriver()

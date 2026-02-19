@@ -9,13 +9,15 @@
 def initRoadhog():
     @Name "[roadhog/init.opy]: initRoadhog()"
 
-    setCustomHp(OW1_ROADHOG_HEALTH, 0, 0)
+    setCustomHp(OW1_ROADHOG_HEALTH, OW1_ROADHOG_ARMOR, 0)
     setUltCost(OW1_ROADHOG_ULT_COST)
 
     eventPlayer.setAmmo(0, OW1_ROADHOG_CLIP_SIZE)
     eventPlayer.setMaxAmmo(0, OW1_ROADHOG_CLIP_SIZE)
 
     # eventPlayer.setDamageDealt(percent(OW1_ROADHOG_SCRAP_GUN_DAMAGE/OW2_ROADHOG_SCRAP_GUN_DAMAGE))
+    
+    
     eventPlayer.setHealingDealt(percent(OW1_ROADHOG_BREATHER_HEAL_TOTAL/OW2_ROADHOG_BREATHER_HEAL_TOTAL))
 
     # removeTankPassive()

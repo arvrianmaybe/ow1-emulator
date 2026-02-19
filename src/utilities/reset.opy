@@ -114,6 +114,7 @@ def resetStats():
     eventPlayer._stat_reset = false
 
     setBaseDamage(eventPlayer, 1)
+    eventPlayer.setDamageDealt(100)
     eventPlayer.setDamageReceived(100)
     eventPlayer.setProjectileSpeed(100)
     eventPlayer.setProjectileGravity(100)
@@ -122,7 +123,12 @@ def resetStats():
     eventPlayer.setKnockbackReceived(100)
     eventPlayer.setKnockbackDealt(100)
     eventPlayer.setGravity(100)
+    eventPlayer.setJumpVerticalSpeed(100)
     setBaseMovement(eventPlayer, 1)
+    eventPlayer.stopScalingSize()
+    eventPlayer.stopCamera()
+    eventPlayer.stopFacing()
+    eventPlayer.stopAcceleration()
 
     eventPlayer._stat_reset = true
 

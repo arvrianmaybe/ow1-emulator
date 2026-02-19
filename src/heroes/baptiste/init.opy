@@ -1,6 +1,7 @@
 #!mainFile "../../dev_main.opy"
 
 #!include "regen_burst.opy"
+#!include "exo_boost.opy"
 # !include "lamp.opy"
 
 
@@ -9,6 +10,8 @@ def initBaptiste():
 
     setCustomHp(OW1_BAPTISTE_HEALTH, 0, 0)
     setUltCost(OW1_BAPTISTE_ULT_COST)
+
+    eventPlayer.exo_boost_jump_height = 0
 
     # setBaseDamage(eventPlayer, OW1_BAPTISTE_PRIMARY_DAMAGE/OW2_BAPTISTE_PRIMARY_DAMAGE)
 

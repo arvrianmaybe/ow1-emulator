@@ -7,7 +7,7 @@
 def initZarya():
     @Name "[zarya/init.opy]: initZarya()"
 
-    setCustomHp(OW1_ZARYA_HEALTH, 0, OW1_ZARYA_SHIELDS)
+    setCustomHp(OW1_ZARYA_HEALTH, OW1_ZARYA_ARMOR, OW1_ZARYA_SHIELDS)
     setUltCost(OW1_ZARYA_ULT_COST)
     setBaseDamage(eventPlayer, OW1_ZARYA_CANNON_DAMAGE_MAX/OW2_ZARYA_CANNON_DAMAGE_MAX)
     # removeSelfHealing()
