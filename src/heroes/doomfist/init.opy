@@ -17,7 +17,6 @@ playervar is_ultimate_locked
 #!include "cannon.opy"
 #!include "defense.opy"
 
-
 def initDoomfist():
     @Name "[doomfist/init.opy]: initDoomfist()"
 
@@ -25,6 +24,9 @@ def initDoomfist():
     setUltCost(OW1_DOOMFIST_ULT_COST)
     # removeTankPassive()
     # removeSelfHealing()
+
+    eventPlayer.ow1_best_defense_shields = 0
+    eventPlayer.ow2_best_defense_overhealth = eventPlayer.getHealthOfType(Health.NORMAL)
 
     initRocketPunch()
     initSlam()
