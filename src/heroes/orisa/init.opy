@@ -22,6 +22,8 @@ def initOrisa():
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
     eventPlayer.is_using_halt = false
 
+    eventPlayer.disallowButton(Button.ABILITY_2)
+
     resetFusionDriver()
     showOrisaAmmoHud()
     eventPlayer.is_orisa_reloading = false
@@ -31,7 +33,7 @@ def initOrisa():
     # removeTankPassive()
     # removeSelfHealing()
 
-    setPerkCost(OW2_ORISA_PERK_LVL3_COST)
+    # setPerkCost(OW2_ORISA_PERK_LVL3_COST)
 
 
 rule "[orisa/init.opy]: Clean up Orisa":
@@ -39,5 +41,6 @@ rule "[orisa/init.opy]: Clean up Orisa":
     @Condition eventPlayer.getCurrentHero() == Hero.ORISA
 
     waitUntil(eventPlayer.getCurrentHero() != Hero.ORISA, Math.INFINITY)
+    destroyBarrier()
     endSupercharger()
     hideOrisaAmmoHud()
