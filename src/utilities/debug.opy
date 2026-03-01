@@ -85,7 +85,7 @@ rule "[utilities/debug.opy]: player debug (Top Right)":
     # hudSubheader(eventPlayer, "getAbilityCharge(ABILITY_2) = {}".format(eventPlayer.getAbilityCharge(Button.ABILITY_2)), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     hudSubheader(eventPlayer, "getSpeed() = {}".format(eventPlayer.getSpeed()), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     hudSubheader(eventPlayer, "ow1_best_defense_shields() = {}".format(eventPlayer.ow1_best_defense_shields), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
-    hudSubheader(eventPlayer, "ow2_best_defense_overhealth() = {}".format(eventPlayer.ow2_best_defense_overhealth), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
+    hudSubheader(eventPlayer, "rally_armour() = {}".format(eventPlayer.rally_armour), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     # hudSubheader(eventPlayer, "_ult_cost = {}".format(eventPlayer._ult_cost), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     # hudSubheader(eventPlayer, "_ult_percent_compensated = {}".format(eventPlayer._ult_percent_compensated), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     # hudSubheader(eventPlayer, "getMaxHealth() = {}".format(eventPlayer.getMaxHealth()), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
@@ -160,7 +160,7 @@ rule "[debug.opy] dummybot testing":
     @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
     @Condition eventPlayer.isHoldingButton(Button.CROUCH)
 
-    createDummy(Hero.ANA, getOppositeTeam(eventPlayer.getTeam()), -1, eventPlayer, eventPlayer)
+    createDummy(Hero.ANA, eventPlayer.getTeam(), -1, eventPlayer, eventPlayer)
 
 
 rule "[utilities/debug.opy]: do something on interact":

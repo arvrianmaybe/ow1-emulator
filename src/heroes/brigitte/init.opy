@@ -9,7 +9,8 @@
 def initBrigitte():
     @Name "[brigitte/init.opy]: initBrigitte()"
     
-    setCustomHp(OW1_BRIGITTE_HEALTH, OW1_BRIGITTE_ARMOR, 0)
+    # setCustomHp(OW1_BRIGITTE_HEALTH, OW1_BRIGITTE_ARMOR, 0)
+    eventPlayer.setDamageReceived(percent((50+OW2_BRIGITTE_HEALTH)/(OW1_BRIGITTE_ARMOR+OW1_BRIGITTE_HEALTH)))
     setUltCost(OW1_BRIGITTE_ULT_COST)
 
     setBaseDamage(eventPlayer, OW1_BRIGITTE_FLAIL_DAMAGE/OW2_BRIGITTE_FLAIL_DAMAGE)
