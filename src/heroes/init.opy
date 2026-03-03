@@ -2,17 +2,21 @@
 
 subroutine initAna
 subroutine initAshe
+subroutine initAnran
 subroutine initBaptiste
 subroutine initBastion
 subroutine initBrigitte
 subroutine initDoomfist
+subroutine initDomina
 subroutine initDva
 subroutine initEcho
+subroutine initEmre
 subroutine initFreja
 subroutine initGenji
 subroutine initHanzo
 subroutine initHazard
 subroutine initIllari
+subroutine initJetpackCat
 subroutine initJunkerQueen
 subroutine initJunkrat
 subroutine initJuno
@@ -23,6 +27,7 @@ subroutine initMauga
 subroutine initMccree
 subroutine initMei
 subroutine initMercy
+subroutine initMizuki
 subroutine initMoira
 subroutine initOrisa
 subroutine initPharah
@@ -38,10 +43,11 @@ subroutine initSymmetra
 subroutine initTorbjorn
 subroutine initTracer
 subroutine initVenture
+subroutine initVendetta
 subroutine initWidowmaker
 subroutine initWinston
-subroutine initHammond
 subroutine initWuyang
+subroutine initHammond
 subroutine initZarya
 subroutine initZenyatta
 
@@ -56,6 +62,9 @@ def initHero():
         case Hero.ASHE:
             initAshe()
             break
+        case Hero.ANRAN:
+            initAnran()
+            break
         case Hero.BAPTISTE:
             initBaptiste()
             break
@@ -68,11 +77,17 @@ def initHero():
         case Hero.DOOMFIST:
             initDoomfist()
             break
+        case Hero.DOMINA:
+            initDomina()
+            break
         case Hero.DVA:
             initDva()
             break
         case Hero.ECHO:
             initEcho()
+            break
+        case Hero.EMRE:
+            initEmre()
             break
         case Hero.FREJA:
             initFreja()
@@ -88,6 +103,9 @@ def initHero():
             break
         case Hero.ILLARI:
             initIllari()
+            break
+        case Hero.JETPACK_CAT:
+            initJetpackCat()
             break
         case Hero.JUNKER_QUEEN:
             initJunkerQueen()
@@ -118,6 +136,9 @@ def initHero():
             break
         case Hero.MERCY:
             initMercy()
+            break
+        case Hero.MIZUKI:
+            initMizuki()
             break
         case Hero.MOIRA:
             initMoira()
@@ -164,11 +185,17 @@ def initHero():
         case Hero.VENTURE:
             initVenture()
             break
+        case Hero.VENDETTA:
+            initVendetta()
+            break
         case Hero.WIDOWMAKER:
             initWidowmaker()
             break
         case Hero.WINSTON:
             initWinston()
+            break
+        case Hero.WUYANG:
+            initWuyang()
             break
         case Hero.HAMMOND:
             initHammond()

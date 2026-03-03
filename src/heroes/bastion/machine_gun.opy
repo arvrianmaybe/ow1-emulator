@@ -27,9 +27,9 @@ rule "[bastion/machine_gun.opy]: Activate machine gun in sentry mode":
             eventPlayer,
             "{0}|{1}".format(ceil(eventPlayer.machine_gun_ammo), OW1_BASTION_SENTRY_CONFIG_CLIP_SIZE),
             updateEveryTick(eventPlayer.getEyePosition() + \
-            (100 * (3.3 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + \
+            (100 * (3.9 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + \
             ((-1.3 - 0.2) * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), 
-            verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 
+            verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3.55 * eventPlayer.getFacingDirection()))), 
             2, 
             Clip.NONE, 
             WorldTextReeval.VISIBILITY_POSITION_STRING_AND_COLOR, 
@@ -114,4 +114,4 @@ rule "[bastion/machine_gun.opy]: Disallow machine gun shooting when machine gun 
     @Condition not eventPlayer.machine_gun_ready # gun not ready to shoot
     @Condition eventPlayer.current_configuration == Configuration.SENTRY
 
-    eventPlayer.disallowButton(Button.PRIMARY_FIRE)
+    eventPlayer.disallowButton(Button.PRIMARY_FIRE) 

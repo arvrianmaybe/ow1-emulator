@@ -16,7 +16,6 @@ rule "[brigitte/rally.opy]: OW1 Rally":
 
     eventPlayer.ralley_hot_id = getLastHoT()
 
-    wait(9.9)
     eventPlayer.A = eventPlayer.getHealthOfType(Health.ARMOR)
     waitUntil(not eventPlayer.isUsingUltimate(), 10)
 
@@ -29,20 +28,21 @@ rule "[brigitte/rally.opy]: OW1 Rally":
     removeHealthPool(getLastCreatedHealthPool())
     eventPlayer.setMoveSpeed(100)
     stopHoT(eventPlayer.ralley_hot_id)
-    #eventPlayer.setMaxHealth(percent(eventPlayer._hp_scalar))
-    #heal(eventPlayer, null, 100)
-    #wait(0.016, Wait.RESTART_WHEN_TRUE)
-    #heal(eventPlayer, null, 31)
-    #wait(30)
-    #eventPlayer.removeAllHealthPools()
 
 
-# This might cause lag because its constantly running
+rule "[brigitte/rally.opy]: Track Bash cooldown":
+    @Event eachPlayer
+    @Hero brigitte
+    @Condition eventPlayer.isFiringPrimaryFire()
+    @Condition eventPlayer.isFiringSecondaryFire()
+        
+    eventPlayer.shield_bash_cd = OW1_BRIGITTE_SHIELD_BASH_COOLDOWN
+    chase(eventPlayer.shield_bash_cd, 0, rate=1, ChaseReeval.NONE)
 
-#rule "[brigitte/rally.opy]: Doesnt reset bash on ult":
-#    @Event eachPlayer
-#    @Hero brigitte
+
+rule "[brigitte/rally.opy]: Force cooldown for Bash in Rally":
+    @Event eachPlayer
+    @Hero brigitte
+    @Condition eventPlayer.isUsingUltimate()
     
-#    eventPlayer.shield_bash_cd = eventPlayer.getAbilityCooldown(Button.PRIMARY_FIRE)
-#    wait()
-#    loop()
+    eventPlayer.setAbilityCooldown(Button.PRIMARY_FIRE, eventPlayer.shield_bash_cd)
