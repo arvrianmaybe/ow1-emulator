@@ -9,14 +9,13 @@ created by discord users: Bebel#5658 and Xponit#1474
 # Semi-public scoped variables
 playervar is_using_uppercut
 playervar is_ultimate_locked
-playervar decay_timer
 
 #!include "uppercut.opy"
 #!include "slam.opy"
 #!include "punch.opy"
 #!include "meteor.opy"
 #!include "cannon.opy"
-#!include "bestdefense.opy"
+#!include "defense.opy"
 
 
 def initDoomfist():
@@ -25,12 +24,13 @@ def initDoomfist():
     setCustomHp(OW1_DOOMFIST_HEALTH, 0, 0)
     setUltCost(OW1_DOOMFIST_ULT_COST)
     # removeTankPassive()
-    #removeSelfHealing()
+    # removeSelfHealing()
 
+    eventPlayer.ow1_best_defense_shields = 0
+    eventPlayer.ow2_best_defense_overhealth = eventPlayer.getHealthOfType(Health.NORMAL)
 
     initRocketPunch()
     initSlam()
-    eventPlayer.uppercut_shields = 0
 
 
 rule "[doomfist/init.opy]: Clean up Doomfist":
@@ -40,10 +40,4 @@ rule "[doomfist/init.opy]: Clean up Doomfist":
     waitUntil(eventPlayer.getCurrentHero() != Hero.DOOMFIST, Math.INFINITY)
     destroySlamIndicatorGui()
     hideSlamDamageGui()
-
-
-
-
-
-
 
