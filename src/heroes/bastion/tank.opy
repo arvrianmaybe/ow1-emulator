@@ -23,18 +23,10 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.setUltEnabled(false) # Prevent Bastion from getting ult charge during ultimate
     wait(OW1_BASTION_TANK_CONFIG_TRANSFORM_TIME-OW2_BASTION_ASSAULT_CONFIG_TRANSFORM_TIME)
     eventPlayer.cancelPrimaryAction() # interrupt ultimate animation right before it completes
-    eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
     eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to turret mode
     eventPlayer.disallowButton(Button.ABILITY_1) # Disable reconfiguring out of turret mode
 
-    # transform into ow1 tank
-    eventPlayer.setUltEnabled(false) # Prevent Bastion from getting ult charge during ultimate
-    wait(OW1_BASTION_TANK_CONFIG_TRANSFORM_TIME-OW2_BASTION_ASSAULT_CONFIG_TRANSFORM_TIME)
-    eventPlayer.cancelPrimaryAction() # interrupt ultimate animation right before it completes
-    eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to turret mode
-    eventPlayer.disallowButton(Button.ABILITY_1) # Disable reconfiguring out of turret mode
-
-    wait(OW1_BASTION_TANK_CONFIG_DURATION-OW2_BASTION_ASSAULT_CONFIG_LENGTH+TICK_DURATION)
+    wait(OW1_BASTION_TANK_CONFIG_DURATION-OW2_BASTION_ASSAULT_CONFIG_LENGTH+TICK_DURATION) # Restart tank mode
 
     # Restart tank config
     eventPlayer.allowButton(Button.ABILITY_1)
@@ -73,3 +65,4 @@ rule "[bastion/tank.opy]: Reload tank shells":
     eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME) # modify cooldown for tank shell
     wait(OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME) # Wait tank shell reload time
     eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, 0) # Set tank shell as available
+
