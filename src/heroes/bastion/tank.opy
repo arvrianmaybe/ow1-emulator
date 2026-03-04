@@ -26,7 +26,7 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to turret mode
     eventPlayer.disallowButton(Button.ABILITY_1) # Disable reconfiguring out of turret mode
 
-    wait(OW1_BASTION_TANK_CONFIG_DURATION-OW2_BASTION_ASSAULT_CONFIG_LENGTH+TICK_DURATION) # Restart tank mode
+    wait(OW2_BASTION_ASSAULT_CONFIG_LENGTH-(TICK_DURATION*4)) # Restart tank mode
 
     # Restart tank config
     eventPlayer.allowButton(Button.ABILITY_1)
@@ -36,8 +36,9 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.cancelPrimaryAction()
     eventPlayer.disallowButton(Button.ABILITY_1) # Re-disable reconfiguring out of tank mode
 
-    waitUntil(not eventPlayer.isUsingAbility1(), OW1_BASTION_TANK_CONFIG_DURATION)
+    wait(OW1_BASTION_TANK_CONFIG_DURATION-OW2_BASTION_ASSAULT_CONFIG_LENGTH+OW2_BASTION_ASSAULT_CONFIG_TRANSFORM_TIME+OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME+(TICK_DURATION*4)) # Exit tank mode
     eventPlayer.allowButton(Button.ABILITY_1)
+    eventPlayer.forceButtonPress(Button.ABILITY_1) # Leave tank mode
     eventPlayer.setUltEnabled(true)
 
 
@@ -65,4 +66,3 @@ rule "[bastion/tank.opy]: Reload tank shells":
     eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME) # modify cooldown for tank shell
     wait(OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME) # Wait tank shell reload time
     eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, 0) # Set tank shell as available
-
