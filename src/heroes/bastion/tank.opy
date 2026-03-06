@@ -26,20 +26,24 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to turret mode
     eventPlayer.disallowButton(Button.ABILITY_1) # Disable reconfiguring out of turret mode
 
-    wait(OW2_BASTION_ASSAULT_CONFIG_LENGTH-(TICK_DURATION*4)) # Restart tank mode
+    wait(OW2_BASTION_ASSAULT_CONFIG_LENGTH-(TICK_DURATION*4)) # Exact tick to leaving turret
 
     # Restart tank config
     eventPlayer.allowButton(Button.ABILITY_1)
-    eventPlayer.forceButtonPress(Button.ABILITY_1) # Leave tank mode
-    eventPlayer.cancelPrimaryAction()
-    eventPlayer.forceButtonPress(Button.ABILITY_1) # Re-enter tank and restart tank mode
-    eventPlayer.cancelPrimaryAction()
+    if eventPlayer.isUsingAbility1():
+        eventPlayer.forceButtonPress(Button.ABILITY_1) # Leave turret mode
+        eventPlayer.cancelPrimaryAction()
+        eventPlayer.forceButtonPress(Button.ABILITY_1) # Extend tank mode duration
+        eventPlayer.cancelPrimaryAction()
     eventPlayer.disallowButton(Button.ABILITY_1) # Re-disable reconfiguring out of tank mode
 
-    wait(OW1_BASTION_TANK_CONFIG_DURATION-OW2_BASTION_ASSAULT_CONFIG_LENGTH+OW2_BASTION_ASSAULT_CONFIG_TRANSFORM_TIME+OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME+(TICK_DURATION*4)) # Exit tank mode
+    wait(OW1_BASTION_TANK_CONFIG_DURATION-OW2_BASTION_ASSAULT_CONFIG_LENGTH+OW2_BASTION_ASSAULT_CONFIG_TRANSFORM_TIME+OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME+(TICK_DURATION*4))
+
     eventPlayer.allowButton(Button.ABILITY_1)
-    eventPlayer.forceButtonPress(Button.ABILITY_1) # Leave tank mode
     eventPlayer.setUltEnabled(true)
+
+    if eventPlayer.isUsingAbility1():
+        eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to recon
 
 
 rule "[bastion/tank.opy]: Fire tank shells":
@@ -66,3 +70,13 @@ rule "[bastion/tank.opy]: Reload tank shells":
     eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME) # modify cooldown for tank shell
     wait(OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME) # Wait tank shell reload time
     eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, 0) # Set tank shell as available
+
+
+rule "[bastion/tank.opy]: Force self-repair when shooting shells":
+    @Event eachPlayer
+    @Hero bastion
+    @Condition eventPlayer.current_configuration == Configuration.TANK
+    @Condition eventPlayer.isFiringSecondaryFire()
+
+    wait()
+    eventPlayer.setStatusEffect(null, Status.STUNNED, TICK_DURATION) # Overwrite the timer to allow to use any abilies
