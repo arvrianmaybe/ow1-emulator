@@ -1,10 +1,10 @@
 #!mainFile "../../dev_main.opy"
 
-#playervar self_bubble_cooldown
-#playervar self_bubble_cd_text
+playervar self_bubble_cooldown
+playervar self_bubble_cd_text
 
-#macro initSelfBubble():
-#    eventPlayer.self_bubble_cooldown = 0
+macro initSelfBubble():
+   eventPlayer.self_bubble_cooldown = 0
 
 /*
 Below HUD code is sourced from https://workshop.codes/wiki/articles/rendering-an-inworld-text-at-a-specific-onscreen-position
@@ -21,54 +21,54 @@ such as meleeing or reloading, the HUD moves/shakes around with the camera.
 
 Below HUD is tuned for 16:9 aspect ratio monitors (typical PC Overwatch setup).
 */
-#macro showSelfBubbleCD():
-#    if eventPlayer.self_bubble_cd_text == null:
-#        createInWorldText(eventPlayer,
-#                        "{0}".format(ceil(eventPlayer.self_bubble_cooldown)),
-#                        updateEveryTick(eventPlayer.getEyePosition() + (100 * (1.99 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + ((-1.7 - 0.2) * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()),
-#                        verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))),
-#                        3,
-#                        Clip.NONE,
-#                        WorldTextReeval.VISIBILITY_POSITION_STRING_AND_COLOR,
-#                        Color.WHITE,
-#                        SpecVisibility.DEFAULT)
-#        eventPlayer.self_bubble_cd_text = getLastCreatedText()
+macro showSelfBubbleCD():
+   if eventPlayer.self_bubble_cd_text == null:
+       createInWorldText(eventPlayer,
+                       "{0}".format(ceil(eventPlayer.self_bubble_cooldown)),
+                       updateEveryTick(eventPlayer.getEyePosition() + (100 * (1.99 * worldVector(Vector.RIGHT, eventPlayer, Transform.ROTATION) + ((-1.7 - 0.2) * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()),
+                       verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))),
+                       3,
+                       Clip.NONE,
+                       WorldTextReeval.VISIBILITY_POSITION_STRING_AND_COLOR,
+                       Color.WHITE,
+                       SpecVisibility.DEFAULT)
+       eventPlayer.self_bubble_cd_text = getLastCreatedText()
 
-#macro hideSelfBubbleCD():
-#    destroyInWorldText(eventPlayer.self_bubble_cd_text)
-#    eventPlayer.self_bubble_cd_text = null
+macro hideSelfBubbleCD():
+   destroyInWorldText(eventPlayer.self_bubble_cd_text)
+   eventPlayer.self_bubble_cd_text = null
 
 
-# rule "[zarya/self_bubble.opy]: OW1 zarya self bubble cooldown":
-#     @Event eachPlayer
-#     @Hero zarya
-#     @Condition eventPlayer.isUsingAbility1()
+rule "[zarya/self_bubble.opy]: OW1 zarya self bubble cooldown":
+    @Event eachPlayer
+    @Hero zarya
+    @Condition eventPlayer.isUsingAbility1()
     
-#     eventPlayer.disallowButton(Button.ABILITY_1)
-#     eventPlayer.setAbilityCharge(Button.ABILITY_1, 2)
-#     waitUntil(not eventPlayer.isUsingAbility1(), OW1_ZARYA_BUBBLE_DURATION) # wait bubble duration
-#     eventPlayer.setAbility1Enabled(false)
-#     eventPlayer.self_bubble_cooldown = OW1_ZARYA_PARTICLE_BARRIER_COOLDOWN_TIME
-#     eventPlayer.allowButton(Button.ABILITY_1)
-#     chase(eventPlayer.self_bubble_cooldown, 0, rate=1, ChaseReeval.NONE)
+    eventPlayer.disallowButton(Button.ABILITY_1)
+    eventPlayer.setAbilityCharge(Button.ABILITY_1, 2)
+    waitUntil(not eventPlayer.isUsingAbility1(), OW1_ZARYA_BUBBLE_DURATION) # wait bubble duration
+    eventPlayer.setAbility1Enabled(false)
+    eventPlayer.self_bubble_cooldown = OW1_ZARYA_PARTICLE_BARRIER_COOLDOWN_TIME
+    eventPlayer.allowButton(Button.ABILITY_1)
+    chase(eventPlayer.self_bubble_cooldown, 0, rate=1, ChaseReeval.NONE)
 
 
-# rule "[zarya/self_bubble.opy]: Disable self bubble if on cooldown":
-#     @Event eachPlayer
-#     @Hero zarya
-#     @Condition eventPlayer.self_bubble_cooldown > 0
+rule "[zarya/self_bubble.opy]: Disable self bubble if on cooldown":
+    @Event eachPlayer
+    @Hero zarya
+    @Condition eventPlayer.self_bubble_cooldown > 0
 
-#     eventPlayer.setAbility1Enabled(false)
-#     showSelfBubbleCD()
+    eventPlayer.setAbility1Enabled(false)
+    showSelfBubbleCD()
 
 
-# rule "[zarya/self_bubble.opy]: Enable self bubble if not on cooldown":
-#     @Event eachPlayer
-#     @Hero zarya
-#     @Condition eventPlayer.self_bubble_cooldown <= 0
+rule "[zarya/self_bubble.opy]: Enable self bubble if not on cooldown":
+    @Event eachPlayer
+    @Hero zarya
+    @Condition eventPlayer.self_bubble_cooldown <= 0
 
-#     eventPlayer.setAbility1Enabled(true)
-#     hideSelfBubbleCD()
+    eventPlayer.setAbility1Enabled(true)
+    hideSelfBubbleCD()
 
 
 rule "[zarya/barrier.opy]: OW1 Zarya self barrier health":
