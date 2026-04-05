@@ -11,9 +11,9 @@ rule "[sigma/grasp.opy]: Convert Kinetic Grasp overhealth to shields":
     @Event eachPlayer
     @Hero sigma
     @Condition eventPlayer.isUsingAbility1()
-    #@Condition eventPlayer.getHealthOfType(Health.NORMAL) > eventPlayer.getMaxHealthOfType(Health.NORMAL)
+    # @Condition eventPlayer.getHealthOfType(Health.NORMAL) > eventPlayer.getMaxHealthOfType(Health.NORMAL)
 
-    wait(2) #sigma grasp duration
+    wait(OW1_SIGMA_GRASP_DURATION, Wait.ABORT_WHEN_FALSE)
     eventPlayer.grasp_shield_amount = eventPlayer.getHealthOfType(Health.NORMAL) - eventPlayer.getMaxHealthOfType(Health.NORMAL)
     eventPlayer.grasp_decaying = false
 

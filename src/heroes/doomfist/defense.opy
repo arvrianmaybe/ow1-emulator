@@ -10,14 +10,16 @@ rule "[doomfist/defense.opy]: Current OW1 Best Defense":
     @Event playerDealtDamage
     @Hero doomfist
     @Condition (eventAbility == Button.SECONDARY_FIRE and not (victim in attacker.wall_impacted_victims) and (attacker.punched_victims >= 1)) \
-            or (eventAbility == Button.ABILITY_1 and victim in attacker.ow1_slam_victims) \
+            or eventAbility == Button.ABILITY_1 \
             or eventAbility == Button.ULTIMATE \
             or eventPlayer.is_using_uppercut
 
     if attacker.punched_victims >= 1:
-        attacker.best_defense_hit_count = 1
+        attacker.best_defense_hit_count = OW1_DOOMFIST_BEST_DEFENSE
+    elif eventAbility == Button.ULTIMATE:
+        attacker.best_defense_hit_count += OW1_DOOMFIST_BEST_DEFENSE_ULT
     else:
-        attacker.best_defense_hit_count += 1
+        attacker.best_defense_hit_count += OW1_DOOMFIST_BEST_DEFENSE
 
 
 rule "[doomfist/defense.opy]: Apply Custom OW1 Best Defense shields":
@@ -29,7 +31,7 @@ rule "[doomfist/defense.opy]: Apply Custom OW1 Best Defense shields":
     wait(0.1, Wait.RESTART_WHEN_TRUE)
 
     eventPlayer.ow1_best_defense_shields = min(
-        eventPlayer.ow1_best_defense_shields + eventPlayer.best_defense_hit_count * OW1_DOOMFIST_BEST_DEFENSE,
+        eventPlayer.ow1_best_defense_shields + eventPlayer.best_defense_hit_count,
         OW1_DOOMFIST_BEST_DEFENSE_MAX
     )
     

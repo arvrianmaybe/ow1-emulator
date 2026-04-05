@@ -16,7 +16,7 @@ playervar doom_hp
 #!include "punch.opy"
 #!include "meteor.opy"
 #!include "cannon.opy"
-# !include "defense.opy"
+#!include "defense.opy"
 
 
 def initDoomfist():

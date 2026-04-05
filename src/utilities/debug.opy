@@ -54,6 +54,8 @@ rule "[utilities/debug.opy]: player debug (Top Right)":
     hudSubheader(eventPlayer, "_hp_armor_ow2 = {}".format(eventPlayer._hp_armor_ow2), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     hudSubheader(eventPlayer, "_hp_shields_ow2 = {}".format(eventPlayer._hp_shields_ow2), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     hudSubheader(eventPlayer, "_hp_scalar = {}".format(eventPlayer._hp_scalar), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
+    hudSubheader(eventPlayer, "ow1_best_defense_shields = {}".format(eventPlayer.ow1_best_defense_shields), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
+    hudSubheader(eventPlayer, "best_defense_hit_count = {}".format(eventPlayer.best_defense_hit_count), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     # hudSubheader(eventPlayer, "_primal_exit_health = {}".format(eventPlayer._primal_exit_health), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     # hudSubheader(eventPlayer, "_primal_exit_armor = {}".format(eventPlayer._primal_exit_armor), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     # hudSubheader(eventPlayer, "isResetComplete() = {}".format(isResetComplete(eventPlayer)), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
